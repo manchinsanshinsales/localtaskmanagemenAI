@@ -22,7 +22,7 @@ services:
     environment:
       - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/analytics
       - OLLAMA_HOST=http://host.docker.internal:11434
-      - OLLAMA_MODEL=gemma2:9b # もしくは llama3, mistral 等
+      - OLLAMA_MODEL=gemma4:12b # もしくは llama3, mistral 等
     extra_hosts:
       - "host.docker.internal:host-gateway" # コンテナ内からホストマシンのOllama APIへアクセスするため
     depends_on:

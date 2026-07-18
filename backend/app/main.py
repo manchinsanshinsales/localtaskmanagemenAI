@@ -163,3 +163,15 @@ def sync_to_cloud(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"Database synchronization failed: {str(e)}"
         )
+
+# 静的ファイルの配信設定
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
+
+static_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static")
+app.mount("/static", StaticFiles(directory=static_dir), name="static")
+
+@app.get("/")
+def read_index():
+    return FileResponse(os.path.join(static_dir, "index.html"))
+
